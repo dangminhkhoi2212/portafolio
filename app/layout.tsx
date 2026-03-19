@@ -1,5 +1,9 @@
+import { Footer } from "@/components/footer"
+import { Navbar } from "@/components/navbar"
 import { ThemeProvider } from "@/components/theme-provider"
+import { GridBackground } from "@/components/ui/grid-background"
 import { ScrollArea } from "@/components/ui/scroll-area"
+import { SpotlightBackground } from "@/components/ui/spotlight-background"
 import { personalInfo } from "@/lib/data"
 import { cn } from "@/lib/utils"
 import type { Metadata } from "next"
@@ -50,7 +54,17 @@ export default function RootLayout({
     >
       <body>
         <ThemeProvider>
-          <ScrollArea className="h-screen">{children}</ScrollArea>
+          <SpotlightBackground />
+          <ScrollArea className="h-screen">
+            <div className="relative min-h-screen bg-background">
+              <GridBackground />
+              <div className="relative z-10 flex flex-col items-center justify-center">
+                <Navbar />
+                {children}
+                <Footer />
+              </div>
+            </div>
+          </ScrollArea>
         </ThemeProvider>
       </body>
     </html>

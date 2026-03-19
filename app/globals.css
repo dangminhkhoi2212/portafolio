@@ -6,8 +6,10 @@
 
 :root {
   /* Zinc-based palette matching chanhdai.com */
-  --background: oklch(0.985 0 0); /* zinc-50 #fafafa */
-  --foreground: oklch(0.141 0 0); /* zinc-950 #09090b */
+  --background: oklch(0.985 0 0);
+  /* zinc-50 #fafafa */
+  --foreground: oklch(0.141 0 0);
+  /* zinc-950 #09090b */
 
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.141 0 0);
@@ -18,17 +20,21 @@
   --primary: oklch(0.205 0 0);
   --primary-foreground: oklch(0.985 0 0);
 
-  --secondary: oklch(0.967 0 0); /* zinc-100 */
+  --secondary: oklch(0.967 0 0);
+  /* zinc-100 */
   --secondary-foreground: oklch(0.205 0 0);
 
-  --muted: oklch(0.967 0 0); /* zinc-100 */
-  --muted-foreground: oklch(0.497 0 0); /* zinc-500 */
+  --muted: oklch(0.967 0 0);
+  /* zinc-100 */
+  --muted-foreground: oklch(0.497 0 0);
+  /* zinc-500 */
 
   --accent: oklch(0.967 0 0);
   --accent-foreground: oklch(0.205 0 0);
 
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0); /* zinc-200 */
+  --border: oklch(0.922 0 0);
+  /* zinc-200 */
   --input: oklch(0.922 0 0);
   --ring: oklch(0.708 0 0);
 
@@ -45,10 +51,13 @@
 }
 
 .dark {
-  --background: oklch(0.141 0 0); /* zinc-950 #09090b */
-  --foreground: oklch(0.985 0 0); /* zinc-50 */
+  --background: oklch(0.141 0 0);
+  /* zinc-950 #09090b */
+  --foreground: oklch(0.985 0 0);
+  /* zinc-50 */
 
-  --card: oklch(0.169 0 0); /* zinc-900 */
+  --card: oklch(0.169 0 0);
+  /* zinc-900 */
   --card-foreground: oklch(0.985 0 0);
 
   --popover: oklch(0.169 0 0);
@@ -57,17 +66,20 @@
   --primary: oklch(0.922 0 0);
   --primary-foreground: oklch(0.205 0 0);
 
-  --secondary: oklch(0.215 0 0); /* zinc-800 */
+  --secondary: oklch(0.215 0 0);
+  /* zinc-800 */
   --secondary-foreground: oklch(0.985 0 0);
 
   --muted: oklch(0.215 0 0);
-  --muted-foreground: oklch(0.636 0 0); /* zinc-400 */
+  --muted-foreground: oklch(0.636 0 0);
+  /* zinc-400 */
 
   --accent: oklch(0.215 0 0);
   --accent-foreground: oklch(0.985 0 0);
 
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 8%); /* zinc-800 equivalent */
+  --border: oklch(1 0 0 / 8%);
+  /* zinc-800 equivalent */
   --input: oklch(1 0 0 / 12%);
   --ring: oklch(0.556 0 0);
 
@@ -125,10 +137,12 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+
   html {
     @apply font-sans;
     scroll-behavior: smooth;

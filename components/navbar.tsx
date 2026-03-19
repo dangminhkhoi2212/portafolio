@@ -12,7 +12,7 @@ const navLinks = [
   { label: "About", href: "#about" },
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
-  { label: "Skills", href: "#skills" },
+  { label: "Education", href: "#education" },
 ]
 
 /**
@@ -81,8 +81,8 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 transition-all duration-300",
-        scrolled ? "border-b border-border backdrop-blur-md" : "bg-transparent"
+        "sticky top-0 z-50 w-full border-y border-border transition-all duration-300",
+        scrolled ? "backdrop-blur-md" : "bg-transparent"
       )}
     >
       <div className="mx-auto flex h-14 max-w-4xl items-center justify-between px-6">

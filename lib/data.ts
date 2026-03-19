@@ -4,10 +4,12 @@ export const personalInfo = {
   tagline: "Building with code. Small details matter.",
   email: "dmkhoi2212@gmail.com",
   phone: "(+84) 378083459",
-  github: "dangminhkhoi2212",
+  github: "https://github.com/dangminhkhoi2212",
+  linkedin:
+    "https://www.linkedin.com/in/%C4%91%E1%BA%B7ng-minh-kh%C3%B4i-b41391342/",
   location: "Can Tho, Vietnam",
   pronouns: "he/him",
-  website: "dangminhkhoi.dev",
+  website: process.env.NEXT_PUBLIC_PORTFOLIO,
   avatar: "/avatar.jpg",
   initials: "MK",
 }
