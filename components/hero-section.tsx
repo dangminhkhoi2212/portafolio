@@ -58,6 +58,7 @@ const metaItems = [
 
 export function HeroSection() {
   const handleCopy = (value: string) => {
+    if (!navigator.clipboard) return
     navigator.clipboard.writeText(value)
   }
   return (
