@@ -16,8 +16,8 @@ export function SpotlightCard({
   spotlightSize = 400,
   ...props
 }: SpotlightCardProps) {
-  const mouseX = useMotionValue(0)
-  const mouseY = useMotionValue(0)
+  const mouseX = useMotionValue(-999)
+  const mouseY = useMotionValue(-999)
 
   function handleMouseMove({
     currentTarget,
@@ -25,7 +25,6 @@ export function SpotlightCard({
     clientY,
   }: React.MouseEvent) {
     const { left, top } = currentTarget.getBoundingClientRect()
-
     mouseX.set(clientX - left)
     mouseY.set(clientY - top)
   }
@@ -35,14 +34,18 @@ export function SpotlightCard({
   return (
     <div
       className={cn(
-        "group relative overflow-hidden rounded-xl border border-border bg-card p-6",
+        "group relative overflow-hidden rounded-xl border border-border bg-card transition-all duration-300",
         className
       )}
       onMouseMove={handleMouseMove}
+      onMouseLeave={() => {
+        mouseX.set(-999)
+        mouseY.set(-999)
+      }}
       {...props}
     >
       <motion.div
-        className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition duration-300 group-hover:opacity-100"
+        className="pointer-events-none absolute -inset-px rounded-xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         style={{
           background,
         }}

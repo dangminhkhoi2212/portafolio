@@ -114,7 +114,7 @@ export function Navbar() {
         {/* Right controls */}
         <div className="flex items-center gap-2">
           <Link
-            href={`https://github.com/${personalInfo.github}`}
+            href={personalInfo.github}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 rounded-md px-2.5 py-1.5 font-mono text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
