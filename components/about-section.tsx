@@ -16,7 +16,7 @@ export function AboutSection() {
       </FadeReveal>
 
       <FadeReveal delay={0.1}>
-        <div className="mt-6 space-y-4 leading-relaxed text-muted-foreground">
+        <div className="mt-6 space-y-4 leading-relaxed">
           <p>
             Frontend Developer with 1+ years of experience, specializing in
             architecting complex web systems and deep user experience

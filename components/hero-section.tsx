@@ -106,7 +106,7 @@ export function HeroSection() {
         </div>
       </div>
       {/* Meta Pills */}
-      <div className="mt-4 grid grid-cols-2 gap-2">
+      <div className="mt-4 grid grid-cols-1 gap-2 md:grid-cols-2">
         {metaItems.map(({ icon: Icon, label, value, href }) => (
           <div className="group flex items-center justify-between" key={value}>
             <Link
@@ -114,7 +114,7 @@ export function HeroSection() {
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-1 items-center gap-1.5 text-sm text-muted-foreground transition-all duration-300 hover:underline"
+              className="flex flex-1 items-center gap-1.5 text-sm text-foreground transition-all duration-300 hover:underline"
             >
               <div className="rounded-md bg-border p-2">
                 <Icon className="h-3.5 w-3.5 shrink-0" />

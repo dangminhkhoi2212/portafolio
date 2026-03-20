@@ -1,7 +1,7 @@
 export const personalInfo = {
   name: "Dang Minh Khoi",
   title: "Frontend Developer",
-  tagline: "Building with code. Small details matter.",
+  tagline: "Code is the foundation, details are the soul.",
   email: "dmkhoi2212@gmail.com",
   phone: "(+84) 378083459",
   github: "https://github.com/dangminhkhoi2212",

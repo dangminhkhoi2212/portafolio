@@ -3,10 +3,11 @@
 import { personalInfo } from "@/lib/data"
 import { cn } from "@/lib/utils"
 import { Github, Moon, Sun } from "lucide-react"
+import { AnimatePresence, motion } from "motion/react"
 import { useTheme } from "next-themes"
+import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
-
 const navLinks = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
@@ -87,15 +88,43 @@ export function Navbar() {
     >
       <div className="mx-auto flex h-14 max-w-4xl items-center justify-between px-6">
         {/* Logo */}
-        <a
-          href="#home"
-          onClick={(e) => handleNavClick(e, "#home")}
-          className="font-mono text-sm font-bold tracking-tighter text-foreground transition-opacity hover:opacity-70"
-        >
-          <span className="text-base">{"{ "}</span>
-          MK
-          <span className="text-base">{" }"}</span>
-        </a>
+        <AnimatePresence mode="wait">
+          {scrolled ? (
+            <motion.div
+              key="avatar"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ duration: 0.15 }}
+            >
+              <Image
+                src={personalInfo.avatar}
+                alt={personalInfo.name}
+                width={40}
+                height={40}
+                className="h-10 w-10 rounded-full object-cover"
+                priority
+              />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="logo"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 10 }}
+              transition={{ duration: 0.1 }}
+              className="w-10"
+            >
+              <a
+                href="#home"
+                onClick={(e) => handleNavClick(e, "#home")}
+                className="font-press-start text-lgfont-bold tracking-tighter text-foreground transition-opacity hover:opacity-70"
+              >
+                MK
+              </a>
+            </motion.div>
+          )}
+        </AnimatePresence>
 
         {/* Nav Links */}
         <nav className="hidden items-center gap-1 md:flex">

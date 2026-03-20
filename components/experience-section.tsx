@@ -19,7 +19,7 @@ function parseHighlight(text: string) {
 
 export function ExperienceSection() {
   return (
-    <Section id="experience" className="border-b border-border">
+    <Section id="experience" className="">
       <FadeReveal>
         <SectionHeading label="Experience" />
 
