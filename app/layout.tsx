@@ -4,7 +4,6 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { GridBackground } from "@/components/ui/grid-background"
 import { Meteors } from "@/components/ui/meteors"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { SpotlightBackground } from "@/components/ui/spotlight-background"
 import { personalInfo, summary } from "@/lib/data"
 import { cn } from "@/lib/utils"
 import type { Metadata, Viewport } from "next"
@@ -146,13 +145,12 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body>
+      <body className="flex h-screen w-screen flex-col overflow-hidden">
         <ThemeProvider>
-          <SpotlightBackground />
           <Navbar />
-          <ScrollArea className="h-screen w-full">
-            <Meteors number={30} />
-            <GridBackground />
+          <Meteors number={30} />
+          <GridBackground />
+          <ScrollArea className="relative h-full flex-1 overflow-x-hidden overflow-y-auto">
             <div className="relative z-10 flex flex-col items-center justify-center">
               {children}
               <Footer />
