@@ -2,7 +2,6 @@ import { Footer } from "@/components/footer"
 import { Navbar } from "@/components/navbar"
 import { ThemeProvider } from "@/components/theme-provider"
 import { GridBackground } from "@/components/ui/grid-background"
-import { Meteors } from "@/components/ui/meteors"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { personalInfo, summary } from "@/lib/data"
 import { cn } from "@/lib/utils"
@@ -17,7 +16,7 @@ const fontMono = Geist_Mono({
   variable: "--font-mono",
 })
 
-const baseUrl = process.env.NEXT_PUBLIC_PORTAFOLIO || "https://dangminhkhoi.com"
+const baseUrl = process.env.NEXT_PUBLIC_PORTFOLIO || "https://dangminhkhoi.com"
 
 export const viewport: Viewport = {
   themeColor: [
@@ -63,7 +62,7 @@ export const metadata: Metadata = {
     title: `${personalInfo.name} — ${personalInfo.title}`,
     description: summary,
     url: baseUrl,
-    siteName: `${personalInfo.name} Portafolio`,
+    siteName: `${personalInfo.name} Portfolio`,
     locale: "en_US",
     type: "website",
     images: [
@@ -148,7 +147,6 @@ export default function RootLayout({
       <body className="flex h-screen w-screen flex-col overflow-hidden">
         <ThemeProvider>
           <Navbar />
-          <Meteors number={30} />
           <GridBackground />
           <ScrollArea className="relative h-full flex-1 overflow-x-hidden overflow-y-auto">
             <div className="relative z-10 flex flex-col items-center justify-center">
