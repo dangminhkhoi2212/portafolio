@@ -81,7 +81,7 @@ export function AboutSection() {
           iconSize={40}
         >
           {mainTechs.map((tech, i) => (
-            <div className="size-10" key={`${tech}-${iconTheme}`}>
+            <div className="size-8 md:size-10" key={`${tech}-${iconTheme}`}>
               <img
                 key={i}
                 src={`https://go-skill-icons.vercel.app/api/icons?i=${tech}&theme=${iconTheme}`}
@@ -100,7 +100,7 @@ export function AboutSection() {
           iconSize={40}
         >
           {otherTechs.map((tech, i) => (
-            <div className="size-10" key={`${tech}-${iconTheme}`}>
+            <div className="size-8 md:size-10" key={`${tech}-${iconTheme}`}>
               <img
                 src={`https://go-skill-icons.vercel.app/api/icons?i=${tech}&theme=${iconTheme}`}
                 alt={tech}

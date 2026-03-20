@@ -81,7 +81,15 @@ export const projects = [
     period: "Feb. 2026 – Present",
     url: null,
     demoUrl: "https://k-drago.vercel.app/",
-    tags: ["Next.js", "React Flow", "NestJS", "Supabase", "Vercel AI SDK"],
+    tags: [
+      "Next.js",
+      "Shadcn/ui",
+      "Tailwind CSS",
+      "React Flow",
+      "NestJS",
+      "Supabase",
+      "Vercel AI SDK",
+    ],
     highlights: [
       "Architected a dynamic database schema visualizer using **Next.js** and **React Flow**, enabling users to manipulate complex ERD-style table relationships through an interactive, reactive canvas interface.",
       "Integrated **Vercel AI SDK** to build an intelligent SQL co-pilot, supporting natural language-to-query generation and instant table schema drafting with real-time streaming.",

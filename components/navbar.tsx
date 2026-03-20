@@ -97,6 +97,7 @@ export function Navbar() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.15 }}
+              onClick={(e) => handleNavClick(e as any, "#home")}
             >
               <Image
                 src={personalInfo.avatar}
@@ -118,8 +119,7 @@ export function Navbar() {
             >
               <a
                 href="#home"
-                onClick={(e) => handleNavClick(e, "#home")}
-                className="font-press-start text-lgfont-bold tracking-tighter text-foreground transition-opacity hover:opacity-70"
+                className="font-press-start text-lg font-bold tracking-tighter text-foreground transition-opacity hover:opacity-70"
               >
                 MK
               </a>

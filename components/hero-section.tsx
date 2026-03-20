@@ -87,7 +87,7 @@ export function HeroSection() {
 
         {/* Name & Title */}
         <div className="flex-1">
-          <div className="flex flex-wrap items-center gap-2">
+          <div className="flex flex-wrap items-center-safe gap-2">
             <SplitText
               text={personalInfo.name}
               className="text-2xl font-bold tracking-tight text-foreground"
