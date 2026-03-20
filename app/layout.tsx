@@ -2,6 +2,7 @@ import { Footer } from "@/components/footer"
 import { Navbar } from "@/components/navbar"
 import { ThemeProvider } from "@/components/theme-provider"
 import { GridBackground } from "@/components/ui/grid-background"
+import { Meteors } from "@/components/ui/meteors"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { SpotlightBackground } from "@/components/ui/spotlight-background"
 import { personalInfo } from "@/lib/data"
@@ -57,6 +58,9 @@ export default function RootLayout({
           <SpotlightBackground />
           <ScrollArea className="h-screen">
             <div className="relative min-h-screen bg-background">
+              <div className="h-full w-full">
+                <Meteors number={40} />
+              </div>
               <GridBackground />
               <div className="relative z-10 flex flex-col items-center justify-center">
                 <Navbar />

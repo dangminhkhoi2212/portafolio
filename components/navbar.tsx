@@ -2,12 +2,13 @@
 
 import { personalInfo } from "@/lib/data"
 import { cn } from "@/lib/utils"
-import { Github, Moon, Sun } from "lucide-react"
+import { Github } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
 import { useTheme } from "next-themes"
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
+import { AnimatedThemeToggler } from "./ui/animated-theme-toggler"
 const navLinks = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
@@ -152,21 +153,7 @@ export function Navbar() {
             <span className="hidden sm:inline">GitHub</span>
           </Link>
 
-          {mounted && (
-            <button
-              onClick={() =>
-                setTheme(resolvedTheme === "dark" ? "light" : "dark")
-              }
-              className="flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
-              aria-label="Toggle theme"
-            >
-              {resolvedTheme === "dark" ? (
-                <Sun className="h-4 w-4" />
-              ) : (
-                <Moon className="h-4 w-4" />
-              )}
-            </button>
-          )}
+          {mounted && <AnimatedThemeToggler />}
         </div>
       </div>
     </header>

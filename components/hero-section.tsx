@@ -15,6 +15,7 @@ import Link from "next/link"
 
 import { SplitText } from "@/components/ui/split-text"
 import { Button } from "./ui/button"
+import { Ripple } from "./ui/ripple"
 import Section from "./ui/section"
 
 const metaItems = [
@@ -66,8 +67,13 @@ export function HeroSection() {
       {/* Profile Row */}
       <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
         {/* Avatar */}
-        <div className="relative shrink-0">
-          <div className="size-32 overflow-hidden rounded-full ring-2 ring-border ring-offset-2 ring-offset-background transition-transform duration-300 hover:scale-105">
+        <div className="relative flex items-center justify-center overflow-visible">
+          <Ripple
+            mainCircleSize={128}
+            mainCircleOpacity={0.12}
+            numCircles={7}
+          />
+          <div className="relative size-32 overflow-hidden rounded-full ring-2 ring-border ring-offset-2 ring-offset-background">
             <Image
               src={personalInfo.avatar}
               alt={personalInfo.name}
