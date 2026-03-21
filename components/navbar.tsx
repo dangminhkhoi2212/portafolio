@@ -184,6 +184,7 @@ export function Navbar() {
           {/* Mobile Menu via Sheet (Bottom) */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger
+              className={"md:hidden"}
               render={
                 <Button
                   variant="ghost"
