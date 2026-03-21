@@ -1,7 +1,7 @@
 "use client"
 import { FadeReveal } from "@/components/ui/fade-reveal"
 import { OrbitingCircles } from "@/components/ui/orbiting-circles"
-import { certifications } from "@/lib/data"
+import { certifications, personalInfo } from "@/lib/data"
 import { Award, CheckCircle2 } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useEffect, useState } from "react"
@@ -54,16 +54,12 @@ export function AboutSection() {
       </FadeReveal>
 
       <FadeReveal delay={0.1}>
-        <div className="mt-6 space-y-4 leading-relaxed">
-          <p>
-            Frontend Developer with 1+ years of experience, specializing in
-            architecting complex web systems and deep user experience
-            optimization.
-          </p>
-          <ul className="space-y-2">
+        <div className="mt-6 space-y-4 text-justify leading-relaxed">
+          <p>{personalInfo.bio}</p>
+          <ul className="space-y-2 text-muted-foreground">
             {abouts.map((item, i) => (
-              <li key={i} className="flex items-start gap-2">
-                <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-green-500" />
+              <li key={i} className="flex gap-2">
+                <CheckCircle2 className="mt-1.5 h-4 w-4 shrink-0 text-green-500" />
                 <span>{item}</span>
               </li>
             ))}
@@ -114,7 +110,7 @@ export function AboutSection() {
       {/* Certifications */}
       <div className="mt-10">
         <FadeReveal>
-          <SectionHeading label="Certifications" />
+          <SectionHeading label="Certification" />
         </FadeReveal>
         <div className="mt-6 space-y-3">
           {certifications.map((cert, idx) => (

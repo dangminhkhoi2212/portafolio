@@ -14,6 +14,8 @@ import Image from "next/image"
 import Link from "next/link"
 
 import { SplitText } from "@/components/ui/split-text"
+import { useTheme } from "next-themes"
+import { useEffect, useRef, useState } from "react"
 import { Button } from "./ui/button"
 import { Ripple } from "./ui/ripple"
 import Section from "./ui/section"
@@ -62,18 +64,28 @@ export function HeroSection() {
     if (!navigator.clipboard) return
     navigator.clipboard.writeText(value)
   }
+  const { resolvedTheme } = useTheme()
+  const containerRef = useRef<HTMLDivElement>(null)
+  const [mounted, setMounted] = useState(false)
+  useEffect(() => {
+    setMounted(true)
+  }, [])
   return (
     <Section id="home">
       {/* Profile Row */}
-      <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
+      <div className="flex flex-col items-center justify-center gap-6 sm:flex-row sm:items-start">
         {/* Avatar */}
         <div className="relative flex items-center justify-center overflow-visible">
           <Ripple
             mainCircleSize={128}
-            mainCircleOpacity={0.12}
+            mainCircleOpacity={0.15}
             numCircles={7}
+            containerRef={containerRef}
           />
-          <div className="relative size-32 overflow-hidden rounded-full ring-2 ring-border ring-offset-2 ring-offset-background">
+          <div
+            ref={containerRef}
+            className="relative size-32 overflow-hidden rounded-full ring-2 ring-border ring-offset-2 ring-offset-background"
+          >
             <Image
               src={personalInfo.avatar}
               alt={personalInfo.name}
@@ -137,6 +149,22 @@ export function HeroSection() {
             </Button>
           </div>
         ))}
+      </div>
+      {/* GitHub Activity */}
+      <div className="mt-10">
+        {mounted && (
+          <div className="mt-6 flex justify-center transition-colors hover:bg-accent/30">
+            <img
+              alt="GitHub Contribution Snake"
+              src={
+                resolvedTheme === "dark"
+                  ? "https://raw.githubusercontent.com/dangminhkhoi2212/dangminhkhoi2212/output/github-snake-dark.svg"
+                  : "https://raw.githubusercontent.com/dangminhkhoi2212/dangminhkhoi2212/output/github-snake.svg"
+              }
+              className="h-auto w-full max-w-full"
+            />
+          </div>
+        )}
       </div>
     </Section>
   )

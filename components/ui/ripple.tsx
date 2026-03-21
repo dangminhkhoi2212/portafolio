@@ -1,4 +1,10 @@
-import React, { type ComponentPropsWithoutRef, type CSSProperties } from "react"
+"use client"
+import React, {
+  useEffect,
+  useState,
+  type CSSProperties,
+  type ComponentPropsWithoutRef,
+} from "react"
 
 import { cn } from "@/lib/utils"
 
@@ -6,6 +12,7 @@ interface RippleProps extends ComponentPropsWithoutRef<"div"> {
   mainCircleSize?: number
   mainCircleOpacity?: number
   numCircles?: number
+  containerRef?: React.RefObject<HTMLDivElement | null>
 }
 
 export const Ripple = React.memo(function Ripple({
@@ -13,8 +20,48 @@ export const Ripple = React.memo(function Ripple({
   mainCircleOpacity = 0.24,
   numCircles = 8,
   className,
+  containerRef,
   ...props
 }: RippleProps) {
+  const [position, setPosition] = useState({ x: 0, y: 0 })
+  useEffect(() => {
+    const container = containerRef?.current
+    if (!container) return
+
+    const updatePosition = () => {
+      const rect = container.getBoundingClientRect()
+      console.log("🚀 ~ updatePosition ~ rect:", rect)
+      setPosition({
+        x: rect.x + rect.width / 2,
+        y: rect.y + rect.height / 2,
+      })
+    }
+
+    // Initial position
+    updatePosition()
+
+    // Monitor for size/layout changes
+    const resizeObserver = new ResizeObserver(updatePosition)
+    resizeObserver.observe(container)
+
+    // Monitor for scroll changes (critical for fixed positioning)
+    const handleScroll = () => {
+      window.requestAnimationFrame(updatePosition)
+    }
+
+    // Find the closest scrollable parent or use window
+    const scrollParent =
+      document.querySelector("[data-slot='scroll-area-viewport']") || window
+    scrollParent.addEventListener("scroll", handleScroll, { passive: true })
+    window.addEventListener("resize", updatePosition)
+
+    return () => {
+      resizeObserver.disconnect()
+      scrollParent.removeEventListener("scroll", handleScroll)
+      window.removeEventListener("resize", updatePosition)
+    }
+  }, [containerRef])
+  if (!containerRef?.current) return
   return (
     <div
       className={cn(
@@ -32,7 +79,7 @@ export const Ripple = React.memo(function Ripple({
         return (
           <div
             key={i}
-            className={`absolute animate-ripple rounded-full border bg-foreground/25 shadow-xl`}
+            className={`fixed animate-ripple rounded-full border bg-foreground/20 shadow-xl dark:bg-foreground/50`}
             style={
               {
                 "--i": i,
@@ -43,9 +90,8 @@ export const Ripple = React.memo(function Ripple({
                 borderStyle,
                 borderWidth: "1px",
                 borderColor: `var(--foreground)`,
-                top: "50%",
-                left: "50%",
-                transform: "translate(-50%, -50%) scale(1)",
+                top: position.y,
+                left: position.x,
               } as CSSProperties
             }
           />

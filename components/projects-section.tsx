@@ -6,26 +6,14 @@ import Link from "next/link"
 import { BorderBeam } from "./ui/border-beam"
 import { Card, CardContent, CardHeader } from "./ui/card"
 import { FadeReveal } from "./ui/fade-reveal"
+import { HighlightsList } from "./ui/highlights-list"
 import Section from "./ui/section"
-
-function parseHighlight(text: string) {
-  const parts = text.split(/\*\*(.*?)\*\*/g)
-  return parts.map((part, i) =>
-    i % 2 === 1 ? (
-      <strong key={i} className="font-semibold text-foreground">
-        {part}
-      </strong>
-    ) : (
-      part
-    )
-  )
-}
 
 export function ProjectsSection() {
   return (
     <Section id="projects" className="border-border">
       <FadeReveal>
-        <SectionHeading label="Projects" />
+        <SectionHeading label="Project" />
 
         <div className="mt-6 space-y-6">
           {projects.map((project) => (
@@ -69,7 +57,7 @@ export function ProjectsSection() {
               </CardHeader>
               <CardContent>
                 {/* Tags */}
-                <div className="mt-3 flex flex-wrap gap-1.5">
+                <div className="flex flex-wrap gap-1.5 md:mt-3">
                   {project.tags.map((tag) => (
                     <Badge
                       key={tag}
@@ -81,17 +69,10 @@ export function ProjectsSection() {
                   ))}
                 </div>
                 {/* Highlights */}
-                <ul className="mt-4 space-y-2">
-                  {project.highlights.map((highlight, i) => (
-                    <li
-                      key={i}
-                      className="text- flex items-start gap-2 text-muted-foreground"
-                    >
-                      <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-muted-foreground/50" />
-                      <span>{parseHighlight(highlight)}</span>
-                    </li>
-                  ))}
-                </ul>
+                <HighlightsList
+                  highlights={project.highlights}
+                  className="mt-4"
+                />
               </CardContent>
               <BorderBeam />
             </Card>

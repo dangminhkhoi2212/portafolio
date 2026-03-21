@@ -146,10 +146,10 @@ export default function RootLayout({
       </head>
       <body className="flex h-screen w-screen flex-col overflow-hidden">
         <ThemeProvider>
-          <Navbar />
           <GridBackground />
           <ScrollArea className="relative h-full flex-1 overflow-x-hidden overflow-y-auto">
-            <div className="relative z-10 flex flex-col items-center justify-center">
+            <Navbar />
+            <div className="relative flex flex-col items-center justify-center">
               {children}
               <Footer />
             </div>

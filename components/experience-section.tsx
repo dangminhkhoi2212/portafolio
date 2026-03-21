@@ -2,20 +2,8 @@ import { SectionHeading } from "@/components/about-section"
 import { experience } from "@/lib/data"
 import { Building2 } from "lucide-react"
 import { FadeReveal } from "./ui/fade-reveal"
+import { HighlightsList } from "./ui/highlights-list"
 import Section from "./ui/section"
-
-function parseHighlight(text: string) {
-  const parts = text.split(/\*\*(.*?)\*\*/g)
-  return parts.map((part, i) =>
-    i % 2 === 1 ? (
-      <strong key={i} className="font-semibold text-foreground">
-        {part}
-      </strong>
-    ) : (
-      part
-    )
-  )
-}
 
 export function ExperienceSection() {
   return (
@@ -32,7 +20,7 @@ export function ExperienceSection() {
                   <Building2 className="h-4 w-4 text-muted-foreground" />
                 </div>
                 <div className="flex-1">
-                  <div className="flex flex-wrap items-center justify-between gap-2">
+                  <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
                     <div>
                       <h3 className="text-lg font-semibold text-foreground">
                         {job.company}
@@ -41,7 +29,7 @@ export function ExperienceSection() {
                         {job.role}
                       </p>
                     </div>
-                    <div className="text-right">
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-left sm:flex-col sm:items-end sm:gap-0 sm:text-right">
                       <p className="font-mono text-xs text-muted-foreground">
                         {job.period}
                       </p>
@@ -54,23 +42,16 @@ export function ExperienceSection() {
               </div>
 
               {/* Projects */}
-              <div className="mt-4 ml-12 space-y-6">
+              <div className="mt-4 ml-2 space-y-6 md:ml-12">
                 {job.projects.map((project) => (
                   <div key={project.name}>
                     <h4 className="font-semibold text-foreground">
                       {project.name}
                     </h4>
-                    <ul className="mt-2 space-y-2">
-                      {project.highlights.map((h, i) => (
-                        <li
-                          key={i}
-                          className="flex items-start gap-2 text-muted-foreground"
-                        >
-                          <span className="mt-2 h-1 w-1 shrink-0 rounded-full bg-muted-foreground/60" />
-                          <span>{parseHighlight(h)}</span>
-                        </li>
-                      ))}
-                    </ul>
+                    <HighlightsList
+                      highlights={project.highlights}
+                      className="mt-2"
+                    />
                   </div>
                 ))}
               </div>

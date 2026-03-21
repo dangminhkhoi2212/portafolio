@@ -2,13 +2,21 @@
 
 import { personalInfo } from "@/lib/data"
 import { cn } from "@/lib/utils"
-import { Github } from "lucide-react"
+import { Github, Menu } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
 import { useTheme } from "next-themes"
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
 import { AnimatedThemeToggler } from "./ui/animated-theme-toggler"
+import { Button } from "./ui/button"
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "./ui/sheet"
 const navLinks = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
@@ -36,6 +44,16 @@ export function Navbar() {
   const { resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+
+  // Prevent scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = "hidden"
+    } else {
+      document.body.style.overflow = ""
+    }
+  }, [isOpen])
 
   useEffect(() => {
     setMounted(true)
@@ -78,16 +96,17 @@ export function Navbar() {
       window.scrollTo({ top, behavior: "smooth" })
     }
     setScrolled(true)
+    setIsOpen(false)
   }
 
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full border-y border-border transition-all duration-300",
-        scrolled ? "backdrop-blur-md" : "bg-transparent"
+        "sticky top-0 w-full border-y border-border transition-all duration-300",
+        scrolled ? "z-10 backdrop-blur-md" : "bg-transparent"
       )}
     >
-      <div className="mx-auto flex h-14 max-w-4xl items-center justify-between px-6">
+      <div className="mx-auto flex h-14 max-w-4xl cursor-pointer items-center justify-between px-6">
         {/* Logo */}
         <AnimatePresence mode="wait">
           {scrolled ? (
@@ -133,22 +152,23 @@ export function Navbar() {
           )}
         </AnimatePresence>
 
-        {/* Nav Links */}
+        {/* Nav Links - Desktop */}
         <nav className="hidden items-center gap-1 md:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
-              className="rounded-md px-3 py-1.5 font-mono text-xs font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+              className="group relative flex-1 rounded-md px-3 py-1.5 font-mono text-xs font-medium text-muted-foreground transition-all duration-300 hover:bg-accent hover:text-foreground"
             >
               {link.label}
+              <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
             </Link>
           ))}
         </nav>
 
         {/* Right controls */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 sm:gap-2">
           <Link
             href={personalInfo.github}
             target="_blank"
@@ -160,6 +180,66 @@ export function Navbar() {
           </Link>
 
           {mounted && <AnimatedThemeToggler />}
+
+          {/* Mobile Menu via Sheet (Bottom) */}
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger
+              render={
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="flex"
+                  aria-label="Toggle menu"
+                >
+                  <Menu className="h-5 w-5" />
+                </Button>
+              }
+            ></SheetTrigger>
+            <SheetContent
+              side="bottom"
+              className="flex h-[80vh] flex-col gap-0 rounded-2xl rounded-b-none! bg-background px-6 py-4"
+            >
+              <SheetHeader className="sr-only">
+                <SheetTitle>Navigation Menu</SheetTitle>
+              </SheetHeader>
+              <div className="mx-auto mb-8 h-1.5 w-12 rounded-full bg-muted-foreground/20" />
+              <nav className="flex flex-1 flex-col items-center justify-center gap-8 text-center">
+                {navLinks.map((link, i) => (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.05 * i }}
+                  >
+                    <Link
+                      href={link.href}
+                      onClick={(e) => handleNavClick(e, link.href)}
+                      className="group relative text-lg font-bold tracking-tight text-foreground transition-all hover:text-primary"
+                    >
+                      {link.label}
+                      <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full" />
+                    </Link>
+                  </motion.div>
+                ))}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.3 }}
+                  className="mt-12 flex flex-col gap-4"
+                >
+                  <Link
+                    href={personalInfo.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 rounded-full border border-border bg-accent px-10 py-4 font-mono text-sm font-semibold transition-all hover:bg-foreground hover:text-background"
+                  >
+                    <Github className="h-4 w-4" />
+                    View Code on GitHub
+                  </Link>
+                </motion.div>
+              </nav>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </header>
