@@ -16,7 +16,7 @@ const fontMono = Geist_Mono({
   variable: "--font-mono",
 })
 
-const baseUrl = process.env.NEXT_PUBLIC_PORTFOLIO || "https://dangminhkhoi.com"
+const baseUrl = process.env.NEXT_PUBLIC_PORTFOLIO_URL!
 
 export const viewport: Viewport = {
   themeColor: [

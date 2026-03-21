@@ -4,9 +4,8 @@ export const personalInfo = {
   tagline: "Code is the foundation, details are the soul.",
   email: "dmkhoi2212@gmail.com",
   phone: "(+84) 378083459",
-  github: "https://github.com/dangminhkhoi2212",
-  linkedin:
-    "https://www.linkedin.com/in/%C4%91%E1%BA%B7ng-minh-kh%C3%B4i-b41391342/",
+  github: process.env.NEXT_PUBLIC_GITHUB_URL!,
+  linkedin: process.env.NEXT_PUBLIC_LINKEDIN_URL!,
   location: "Can Tho, Vietnam",
   pronouns: "he/him",
   website: process.env.NEXT_PUBLIC_PORTFOLIO,
@@ -20,7 +19,7 @@ export const summary =
 export const socialLinks = [
   {
     name: "GitHub",
-    url: "https://github.com/dangminhkhoi2212",
+    url: process.env.NEXT_PUBLIC_GITHUB_URL!,
     icon: "github",
   },
   {
@@ -30,7 +29,7 @@ export const socialLinks = [
   },
   {
     name: "LinkedIn",
-    url: "https://linkedin.com/in/dangminhkhoi2212",
+    url: process.env.NEXT_PUBLIC_LINKEDIN_URL!,
     icon: "linkedin",
   },
 ]
@@ -80,7 +79,7 @@ export const projects = [
     name: "KDrago — Database Visualization Tool",
     period: "Feb. 2026 – Present",
     url: null,
-    demoUrl: "https://k-drago.vercel.app/",
+    demoUrl: process.env.NEXT_PUBLIC_KDRAGO_DEMO_URL!,
     tags: [
       "Next.js",
       "Shadcn/ui",

@@ -23,7 +23,7 @@ const metaItems = [
     icon: MapPin,
     label: personalInfo.location,
     value: personalInfo.location,
-    href: `https://maps.google.com/?q=${personalInfo.location}`,
+    href: `${process.env.NEXT_PUBLIC_GOOGLE_MAPS_SEARCH_URL}${personalInfo.location}`,
   },
   {
     icon: Phone,
