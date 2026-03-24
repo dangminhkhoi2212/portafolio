@@ -155,9 +155,13 @@ export function HeroSection() {
           <GithubRepo />
         </div>
         {mounted && (
-          <div className="flex justify-center transition-colors hover:bg-accent/30">
-            <img
+          <div className="flex w-full justify-center overflow-hidden transition-colors hover:bg-accent/30 sm:rounded-lg">
+            <Image
+              loading="lazy"
               alt="GitHub Contribution Snake"
+              unoptimized
+              width={880}
+              height={150}
               src={
                 resolvedTheme === "dark"
                   ? "https://raw.githubusercontent.com/dangminhkhoi2212/dangminhkhoi2212/output/github-snake-dark.svg"
