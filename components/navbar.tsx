@@ -2,7 +2,7 @@
 
 import { personalInfo } from "@/lib/data"
 import { cn } from "@/lib/utils"
-import { Github, Menu } from "lucide-react"
+import { Download, Github, Menu } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
 import { useTheme } from "next-themes"
 import Image from "next/image"
@@ -170,6 +170,14 @@ export function Navbar() {
         {/* Right controls */}
         <div className="flex items-center gap-1.5 sm:gap-2">
           <Link
+            href={personalInfo.resumePath}
+            download
+            className="flex items-center gap-1.5 rounded-md px-2.5 py-1.5 font-mono text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+          >
+            <Download className="h-3.5 w-3.5" />
+            <span className="hidden sm:inline">Resume</span>
+          </Link>
+          <Link
             href={personalInfo.github}
             target="_blank"
             rel="noopener noreferrer"
@@ -178,7 +186,6 @@ export function Navbar() {
             <Github className="h-3.5 w-3.5" />
             <span className="hidden sm:inline">GitHub</span>
           </Link>
-
           {mounted && <AnimatedThemeToggler />}
 
           {/* Mobile Menu via Sheet (Bottom) */}

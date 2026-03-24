@@ -5,6 +5,7 @@ import { GridBackground } from "@/components/ui/grid-background"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { personalInfo, summary } from "@/lib/data"
 import { cn } from "@/lib/utils"
+import Providers from "@/providers/query-client"
 import type { Metadata, Viewport } from "next"
 import { Geist_Mono, Outfit } from "next/font/google"
 import "./globals.css"
@@ -44,6 +45,11 @@ export const metadata: Metadata = {
     "Web Developer",
     "Software Engineer",
     "Dang Minh Khoi",
+    "dmk",
+    "dmk2212",
+    "dangminhkhoi2212",
+    "ctu",
+    "fe",
     "Can Tho",
     "Vietnam",
   ],
@@ -112,6 +118,14 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Person",
     name: personalInfo.name,
+    alternateName: [
+      "dmk",
+      "dmk2212",
+      "dangminhkhoi2212",
+      "dmk portfolio",
+      "dangminhkhoi portfolio",
+      "dangminhkhoi2212 portfolio",
+    ],
     jobTitle: personalInfo.title,
     url: baseUrl,
     sameAs: [personalInfo.github, personalInfo.linkedin],
@@ -144,17 +158,19 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="flex h-screen w-screen flex-col overflow-hidden">
-        <ThemeProvider>
-          <GridBackground />
-          <ScrollArea className="relative h-full flex-1 overflow-x-hidden overflow-y-auto">
-            <Navbar />
-            <div className="relative flex flex-col items-center justify-center">
-              {children}
-              <Footer />
-            </div>
-          </ScrollArea>
-        </ThemeProvider>
+      <body className="flex h-screen w-screen flex-col overflow-hidden bg-background">
+        <Providers>
+          <ThemeProvider>
+            <GridBackground />
+            <ScrollArea className="relative h-full flex-1 overflow-x-hidden overflow-y-auto">
+              <Navbar />
+              <div className="relative flex flex-col items-center justify-center">
+                {children}
+                <Footer />
+              </div>
+            </ScrollArea>
+          </ThemeProvider>
+        </Providers>
       </body>
     </html>
   )

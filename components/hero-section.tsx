@@ -16,6 +16,7 @@ import Link from "next/link"
 import { SplitText } from "@/components/ui/split-text"
 import { useTheme } from "next-themes"
 import { useEffect, useRef, useState } from "react"
+import GithubRepo from "./github-repo"
 import { Button } from "./ui/button"
 import { Ripple } from "./ui/ripple"
 import Section from "./ui/section"
@@ -73,7 +74,7 @@ export function HeroSection() {
   return (
     <Section id="home">
       {/* Profile Row */}
-      <div className="flex flex-col items-center justify-center gap-6 sm:flex-row sm:items-start">
+      <div className="flex flex-col items-center justify-center gap-6 md:flex-row md:items-start">
         {/* Avatar */}
         <div className="relative flex items-center justify-center overflow-visible">
           <Ripple
@@ -98,7 +99,7 @@ export function HeroSection() {
         </div>
 
         {/* Name & Title */}
-        <div className="flex-1">
+        <div className="flex-1 space-y-2">
           <div className="flex flex-wrap items-center-safe gap-2">
             <SplitText
               text={personalInfo.name}
@@ -110,15 +111,13 @@ export function HeroSection() {
               {personalInfo.pronouns}
             </Badge>
           </div>
-          <div className="mt-2">
-            <SplitText
-              text={personalInfo.title}
-              className="text-sm font-bold tracking-tight text-foreground"
-              stagger={0.03}
-              delay={0.1}
-            />
-          </div>
-          <p className="mt-2 text-sm text-muted-foreground">
+          <SplitText
+            text={personalInfo.title}
+            className="text-sm font-bold tracking-tight text-foreground"
+            stagger={0.03}
+            delay={0.1}
+          />
+          <p className="text-sm text-muted-foreground">
             {personalInfo.tagline}
           </p>
         </div>
@@ -151,9 +150,12 @@ export function HeroSection() {
         ))}
       </div>
       {/* GitHub Activity */}
-      <div className="mt-10">
+      <div className="mt-10 flex flex-col gap-2">
+        <div className="flex justify-center">
+          <GithubRepo />
+        </div>
         {mounted && (
-          <div className="mt-6 flex justify-center transition-colors hover:bg-accent/30">
+          <div className="flex justify-center transition-colors hover:bg-accent/30">
             <img
               alt="GitHub Contribution Snake"
               src={

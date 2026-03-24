@@ -12,6 +12,7 @@ export const personalInfo = {
   avatar: "/avatar.jpg",
   initials: "MK",
   bio: "Frontend Developer with 1+ years of experience, specializing in architecting complex web systems and deep user experience optimization.",
+  resumePath: "/Dang_Minh_Khoi_Resume.pdf",
 }
 
 export const summary =

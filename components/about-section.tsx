@@ -86,7 +86,6 @@ export function AboutSection() {
             </div>
           ))}
         </OrbitingCircles>
-
         {/* Middle Circle (Systems & Tools) */}
         <OrbitingCircles
           className="size-10 border-none bg-transparent md:size-12"

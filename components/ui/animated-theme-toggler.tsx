@@ -95,7 +95,7 @@ export const AnimatedThemeToggler = ({
       ref={buttonRef}
       onClick={toggleTheme}
       variant={"ghost"}
-      className={cn(className)}
+      className={cn("text-muted-foreground", className)}
       {...props}
     >
       {isDark ? <Sun /> : <Moon />}
