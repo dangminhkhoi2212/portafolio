@@ -2,6 +2,7 @@
 
 import { personalInfo } from "@/lib/data"
 import { cn } from "@/lib/utils"
+import { useMutation } from "@tanstack/react-query"
 import { Download, Github, Menu } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
 import { useTheme } from "next-themes"
@@ -98,7 +99,25 @@ export function Navbar() {
     setScrolled(true)
     setIsOpen(false)
   }
+  const { mutate: downloadResume, isPending: isDownloading } = useMutation({
+    mutationFn: async () => {
+      const response = await fetch(personalInfo.resumePath)
+      const blob = await response.blob()
 
+      // Tạo URL tạm thời và kích hoạt download
+      const url = window.URL.createObjectURL(blob)
+      const link = document.createElement("a")
+      link.href = url
+      link.download = personalInfo.resumePath.split("/").pop() || "resume.pdf"
+      document.body.appendChild(link)
+      link.click()
+
+      // Dọn dẹp
+      document.body.removeChild(link)
+      window.URL.revokeObjectURL(url)
+      return true
+    },
+  })
   return (
     <header
       className={cn(
@@ -169,16 +188,15 @@ export function Navbar() {
 
         {/* Right controls */}
         <div className="flex items-center gap-1.5 sm:gap-2">
-          <a
-            href={personalInfo.resumePath}
-            download={personalInfo.resumePath}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Button
+            onClick={() => downloadResume()}
+            variant={"ghost"}
+            disabled={isDownloading}
             className="flex items-center gap-1.5 rounded-md px-2.5 py-1.5 font-mono text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
           >
             <Download className="h-3.5 w-3.5" />
             <span className="hidden sm:inline">Resume</span>
-          </a>
+          </Button>
           <Link
             href={personalInfo.github}
             target="_blank"

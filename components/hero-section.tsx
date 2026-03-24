@@ -157,9 +157,8 @@ export function HeroSection() {
         {mounted && (
           <div className="flex w-full justify-center overflow-hidden transition-colors hover:bg-accent/30 sm:rounded-lg">
             <Image
-              loading="lazy"
+              loading="eager"
               alt="GitHub Contribution Snake"
-              unoptimized
               width={880}
               height={150}
               src={
