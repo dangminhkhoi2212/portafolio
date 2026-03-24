@@ -158,7 +158,7 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="flex h-screen w-screen flex-col overflow-hidden bg-background">
+      <body className="flex h-dvh w-dvw flex-col overflow-hidden bg-background">
         <ThemeProvider>
           <Providers>
             <GridBackground />
