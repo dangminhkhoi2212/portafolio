@@ -2,9 +2,7 @@
 
 import { personalInfo } from "@/lib/data"
 import { cn } from "@/lib/utils"
-import { useMutation } from "@tanstack/react-query"
-import axios from "axios"
-import { Download, Github, Loader, Menu } from "lucide-react"
+import { Download, Github, Menu } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
 import Image from "next/image"
 import Link from "next/link"
@@ -98,16 +96,6 @@ export function Navbar() {
     setScrolled(true)
     setIsOpen(false)
   }
-  const { mutate: handleDownload, isPending } = useMutation({
-    mutationFn: async () => {
-      const response = await axios.get(personalInfo.resumePath, {
-        responseType: "blob",
-      })
-      const blob = new Blob([response.data], { type: "application/pdf" })
-      const url = window.URL.createObjectURL(blob)
-      window.open(url, "_blank")
-    },
-  })
   return (
     <header
       className={cn(
@@ -178,19 +166,16 @@ export function Navbar() {
 
         {/* Right controls */}
         <div className="flex items-center gap-1.5 sm:gap-2">
-          <Button
-            onClick={() => handleDownload()}
-            variant={"ghost"}
-            disabled={isPending}
+          <a
+            href={personalInfo.resumePath}
+            target="_blank"
+            download={personalInfo.resumePath}
+            rel="noopener noreferrer external"
             className="flex items-center gap-1.5 rounded-md px-2.5 py-1.5 font-mono text-xs text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
           >
-            {isPending ? (
-              <Loader className="h-3.5 w-3.5 animate-spin" />
-            ) : (
-              <Download className="h-3.5 w-3.5" />
-            )}
+            <Download className="h-3.5 w-3.5" />
             <span className="hidden sm:inline">Resume</span>
-          </Button>
+          </a>
           <Link
             href={personalInfo.github}
             target="_blank"

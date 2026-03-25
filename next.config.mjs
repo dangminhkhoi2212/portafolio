@@ -9,19 +9,6 @@ const nextConfig = {
       },
     ],
   },
-  async headers() {
-    return [
-      {
-        source: "/Dang_Minh_Khoi_Resume.pdf",
-        headers: [
-          {
-            key: "Content-Disposition",
-            value: "attachment; filename=Dang_Minh_Khoi_Resume.pdf",
-          },
-        ],
-      },
-    ]
-  },
 }
 
 export default nextConfig
