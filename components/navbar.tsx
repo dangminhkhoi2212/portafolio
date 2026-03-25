@@ -3,9 +3,9 @@
 import { personalInfo } from "@/lib/data"
 import { cn } from "@/lib/utils"
 import { useMutation } from "@tanstack/react-query"
+import { saveAs } from "file-saver"
 import { Download, Github, Menu } from "lucide-react"
 import { AnimatePresence, motion } from "motion/react"
-import { useTheme } from "next-themes"
 import Image from "next/image"
 import Link from "next/link"
 import { useEffect, useState } from "react"
@@ -42,7 +42,6 @@ function getScrollViewport(): HTMLElement | null {
 const NAVBAR_HEIGHT = 56 // h-14 = 3.5rem = 56px
 
 export function Navbar() {
-  const { resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
@@ -104,17 +103,9 @@ export function Navbar() {
       const response = await fetch(personalInfo.resumePath)
       const blob = await response.blob()
 
-      // Tạo URL tạm thời và kích hoạt download
-      const url = window.URL.createObjectURL(blob)
-      const link = document.createElement("a")
-      link.href = url
-      link.download = personalInfo.resumePath.split("/").pop() || "resume.pdf"
-      document.body.appendChild(link)
-      link.click()
-
-      // Dọn dẹp
-      document.body.removeChild(link)
-      window.URL.revokeObjectURL(url)
+      saveAs(blob, personalInfo.resumePath.split("/").pop() || "resume.pdf", {
+        autoBom: true,
+      })
       return true
     },
   })
