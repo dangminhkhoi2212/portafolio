@@ -26,7 +26,6 @@ export const viewport: Viewport = {
   ],
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
 }
 
 export const metadata: Metadata = {
@@ -52,6 +51,9 @@ export const metadata: Metadata = {
     "fe",
     "Can Tho",
     "Vietnam",
+    "LinkedIn",
+    "Web Development",
+    "UI/UX",
   ],
   authors: [{ name: personalInfo.name, url: personalInfo.github }],
   creator: personalInfo.name,
@@ -70,21 +72,15 @@ export const metadata: Metadata = {
     url: baseUrl,
     siteName: `${personalInfo.name} Portfolio`,
     locale: "en_US",
-    type: "website",
-    images: [
-      {
-        url: "/avatar.jpg",
-        width: 800,
-        height: 800,
-        alt: personalInfo.name,
-      },
-    ],
+    type: "profile",
+    firstName: "Dang Minh",
+    lastName: "Khoi",
+    username: "dmk2212",
   },
   twitter: {
     card: "summary_large_image",
     title: `${personalInfo.name} — ${personalInfo.title}`,
     description: summary,
-    images: ["/avatar.jpg"],
     creator: "@dangminhkhoi", // Placeholder if not found
   },
   robots: {

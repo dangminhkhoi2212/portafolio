@@ -13,7 +13,7 @@ export function ProjectsSection() {
   return (
     <Section id="projects" className="border-border">
       <FadeReveal>
-        <SectionHeading label="Project" />
+        <SectionHeading label="Projects" />
 
         <div className="mt-6 space-y-6">
           {projects.map((project) => (

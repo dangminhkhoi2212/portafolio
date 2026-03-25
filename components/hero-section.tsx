@@ -100,7 +100,7 @@ export function HeroSection() {
 
         {/* Name & Title */}
         <div className="flex-1 space-y-2">
-          <div className="flex flex-wrap items-center-safe gap-2">
+          <h1 className="flex flex-wrap items-center-safe gap-2">
             <SplitText
               text={personalInfo.name}
               className="text-2xl font-bold tracking-tight text-foreground"
@@ -110,7 +110,7 @@ export function HeroSection() {
             <Badge variant="secondary" className="font-mono text-xs">
               {personalInfo.pronouns}
             </Badge>
-          </div>
+          </h1>
           <SplitText
             text={personalInfo.title}
             className="text-sm font-bold tracking-tight text-foreground"
