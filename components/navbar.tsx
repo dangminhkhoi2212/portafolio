@@ -98,8 +98,8 @@ export function Navbar() {
   }
   const handleDownload = () => {
     const link = document.createElement("a")
-    link.href = "/resume.pdf"
-    link.download = "Resume.pdf"
+    link.href = personalInfo.resumePath
+    link.download = personalInfo.resumePath.split("/").pop() || "resume.pdf"
 
     // Safari yêu cầu element phải thực sự tồn tại trong DOM để kích hoạt download
     document.body.appendChild(link)
